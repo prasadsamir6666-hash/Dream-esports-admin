@@ -16,11 +16,11 @@
 
     body {
       background: #080808;
-      color: #fff;
+      color: white;
       min-height: 100vh;
     }
 
-    /* ================= LOGIN ================= */
+    /* LOGIN */
 
     #loginPage {
       min-height: 100vh;
@@ -28,8 +28,7 @@
       justify-content: center;
       align-items: center;
       padding: 20px;
-      background:
-        radial-gradient(circle at top, #302000, #080808 55%);
+      background: radial-gradient(circle at top, #302000, #080808 55%);
     }
 
     .login-box {
@@ -59,7 +58,9 @@
       margin-bottom: 28px;
     }
 
-    input {
+    input,
+    select,
+    textarea {
       width: 100%;
       padding: 14px;
       margin-bottom: 15px;
@@ -71,8 +72,19 @@
       font-size: 15px;
     }
 
-    input:focus {
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
       border-color: #ffb000;
+    }
+
+    button {
+      cursor: pointer;
     }
 
     .login-btn {
@@ -84,12 +96,6 @@
       color: #000;
       font-weight: bold;
       font-size: 16px;
-      cursor: pointer;
-    }
-
-    .login-btn:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
     }
 
     #loginError {
@@ -97,11 +103,9 @@
       text-align: center;
       margin-top: 15px;
       font-size: 14px;
-      line-height: 1.5;
     }
 
-
-    /* ================= APP ================= */
+    /* APP */
 
     #app {
       display: none;
@@ -135,11 +139,6 @@
       border-radius: 8px;
       background: #242424;
       color: #fff;
-      cursor: pointer;
-    }
-
-    .logout-btn:hover {
-      background: #333;
     }
 
     main {
@@ -162,8 +161,7 @@
       color: #888;
     }
 
-
-    /* ================= STATS ================= */
+    /* STATS */
 
     .stats {
       display: grid;
@@ -191,18 +189,62 @@
       color: #ffb000;
     }
 
+    /* ADD TOURNAMENT */
 
-    /* ================= SECTION ================= */
+    .add-section {
+      background: #111;
+      border: 1px solid #292929;
+      border-radius: 18px;
+      padding: 22px;
+      margin-bottom: 30px;
+    }
+
+    .add-section h2 {
+      margin-bottom: 20px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .form-grid input,
+    .form-grid select {
+      margin-bottom: 0;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    .add-btn {
+      margin-top: 18px;
+      padding: 13px 22px;
+      border: none;
+      border-radius: 10px;
+      background: #ffb000;
+      color: #000;
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    .add-btn:disabled {
+      opacity: 0.6;
+    }
+
+    #addMessage {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    /* TOURNAMENTS */
 
     .section-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 18px;
-    }
-
-    .section-header h2 {
-      font-size: 22px;
     }
 
     .refresh-btn {
@@ -212,11 +254,7 @@
       background: #ffb000;
       color: #000;
       font-weight: bold;
-      cursor: pointer;
     }
-
-
-    /* ================= TOURNAMENT ================= */
 
     #tournamentList {
       display: grid;
@@ -248,7 +286,6 @@
       background: #173b20;
       color: #63e77a;
       font-size: 12px;
-      white-space: nowrap;
     }
 
     .info-grid {
@@ -285,8 +322,7 @@
       border: 1px solid #292929;
     }
 
-
-    /* ================= MOBILE ================= */
+    /* MOBILE */
 
     @media (max-width: 700px) {
 
@@ -306,6 +342,14 @@
         grid-template-columns: 1fr;
       }
 
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .full {
+        grid-column: auto;
+      }
+
       .info-grid {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -313,691 +357,865 @@
       .tournament-top {
         flex-direction: column;
       }
-
-      .status {
-        width: fit-content;
-      }
     }
   </style>
 </head>
 
 <body>
 
+<!-- LOGIN -->
 
-  <!-- ================= LOGIN PAGE ================= -->
+<div id="loginPage">
 
-  <div id="loginPage">
+  <div class="login-box">
 
-    <div class="login-box">
+    <div class="logo">
+      Dream <span>eSports</span>
+    </div>
 
-      <div class="logo">
-        Dream <span>eSports</span>
-      </div>
+    <div class="subtitle">
+      Admin Panel
+    </div>
 
-      <div class="subtitle">
-        Admin Panel
-      </div>
+    <input
+      type="email"
+      id="email"
+      placeholder="Admin Email"
+    >
 
-      <input
-        type="email"
-        id="email"
-        placeholder="Admin Email"
-        autocomplete="email"
-      >
+    <input
+      type="password"
+      id="password"
+      placeholder="Password"
+    >
 
-      <input
-        type="password"
-        id="password"
-        placeholder="Password"
-        autocomplete="current-password"
-      >
+    <button
+      class="login-btn"
+      id="loginBtn"
+    >
+      LOGIN
+    </button>
 
-      <button
-        class="login-btn"
-        id="loginBtn"
-      >
-        LOGIN
-      </button>
+    <div id="loginError"></div>
 
-      <div id="loginError"></div>
+  </div>
+
+</div>
+
+
+<!-- ADMIN APP -->
+
+<div id="app">
+
+  <header>
+
+    <div class="header-title">
+      Dream <span>eSports</span> Admin
+    </div>
+
+    <button
+      class="logout-btn"
+      id="logoutBtn"
+    >
+      Logout
+    </button>
+
+  </header>
+
+
+  <main>
+
+    <div class="welcome">
+
+      <h1>Dashboard</h1>
+
+      <p>
+        Manage Dream eSports tournaments.
+      </p>
 
     </div>
 
-  </div>
+
+    <!-- STATS -->
+
+    <div class="stats">
+
+      <div class="stat-card">
+        <h3>Total Tournaments</h3>
+        <div
+          class="stat-number"
+          id="totalTournaments"
+        >
+          0
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <h3>Open Tournaments</h3>
+        <div
+          class="stat-number"
+          id="openTournaments"
+        >
+          0
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <h3>Total Players</h3>
+        <div
+          class="stat-number"
+          id="totalPlayers"
+        >
+          0
+        </div>
+      </div>
+
+    </div>
 
 
-  <!-- ================= ADMIN APP ================= -->
+    <!-- ADD TOURNAMENT -->
 
-  <div id="app">
+    <div class="add-section">
 
-    <header>
+      <h2>➕ Add Tournament</h2>
 
-      <div class="header-title">
-        Dream <span>eSports</span> Admin
+      <div class="form-grid">
+
+        <input
+          id="tName"
+          placeholder="Tournament Name"
+        >
+
+        <input
+          id="tGame"
+          placeholder="Game"
+          value="Free Fire"
+        >
+
+        <select id="tMode">
+          <option value="1 vs 1">1 vs 1</option>
+          <option value="2 vs 2">2 vs 2</option>
+          <option value="4 vs 4">4 vs 4</option>
+          <option value="Squad">Squad</option>
+        </select>
+
+        <input
+          id="tDate"
+          type="date"
+        >
+
+        <input
+          id="tTime"
+          type="time"
+        >
+
+        <input
+          id="tMaxPlayers"
+          type="number"
+          min="1"
+          placeholder="Maximum Players"
+        >
+
+        <input
+          id="tEntryFee"
+          type="number"
+          min="0"
+          placeholder="Entry Fee"
+        >
+
+        <input
+          id="tRoomId"
+          placeholder="Room ID (optional)"
+        >
+
+        <select id="tStatus">
+          <option value="Open">Open</option>
+          <option value="Closed">Closed</option>
+        </select>
+
+        <textarea
+          class="full"
+          id="tDescription"
+          placeholder="Tournament Description"
+        ></textarea>
+
       </div>
 
       <button
-        class="logout-btn"
-        id="logoutBtn"
+        class="add-btn"
+        id="addTournamentBtn"
       >
-        Logout
+        CREATE TOURNAMENT
       </button>
 
-    </header>
+      <div id="addMessage"></div>
+
+    </div>
 
 
-    <main>
+    <!-- TOURNAMENT LIST -->
 
-      <div class="welcome">
+    <div class="section-header">
 
-        <h1>Dashboard</h1>
+      <h2>Tournaments</h2>
 
-        <p>
-          Manage and monitor Dream eSports tournaments.
-        </p>
+      <button
+        class="refresh-btn"
+        id="refreshBtn"
+      >
+        Refresh
+      </button>
 
+    </div>
+
+
+    <div id="tournamentList">
+
+      <div class="loading">
+        Loading tournaments...
       </div>
 
+    </div>
 
-      <!-- ================= STATISTICS ================= -->
+  </main>
 
-      <div class="stats">
+</div>
 
-        <div class="stat-card">
 
-          <h3>Total Tournaments</h3>
+<!-- FIREBASE -->
 
-          <div
-            class="stat-number"
-            id="totalTournaments"
-          >
-            0
-          </div>
+<script type="module">
 
-        </div>
+  import {
+    initializeApp
+  } from
+  "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
 
-        <div class="stat-card">
+  import {
+    getAuth,
+    onAuthStateChanged,
+    signInWithEmailAndPassword,
+    signOut
+  } from
+  "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
-          <h3>Open Tournaments</h3>
 
-          <div
-            class="stat-number"
-            id="openTournaments"
-          >
-            0
-          </div>
+  import {
+    getFirestore,
+    collection,
+    getDocs,
+    addDoc
+  } from
+  "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
-        </div>
 
+  /* FIREBASE CONFIG */
 
-        <div class="stat-card">
+  const firebaseConfig = {
 
-          <h3>Total Players</h3>
+    apiKey:
+      "AIzaSyCCtt4laZ43sipr3v_M8SnWdmswlJ4dXUI",
 
-          <div
-            class="stat-number"
-            id="totalPlayers"
-          >
-            0
-          </div>
+    authDomain:
+      "dream-esports-admin.firebaseapp.com",
 
-        </div>
+    projectId:
+      "dream-esports-admin",
 
-      </div>
+    storageBucket:
+      "dream-esports-admin.firebasestorage.app",
 
+    messagingSenderId:
+      "489749417915",
 
-      <!-- ================= TOURNAMENTS ================= -->
+    appId:
+      "1:489749417915:web:8ca1d0ab19a923c848fe9e",
 
-      <div class="section-header">
+    measurementId:
+      "G-J35HJBH0GC"
 
-        <h2>Tournaments</h2>
+  };
 
-        <button
-          class="refresh-btn"
-          id="refreshBtn"
-        >
-          Refresh
-        </button>
 
-      </div>
+  /* INITIALIZE */
 
+  const app =
+    initializeApp(firebaseConfig);
 
-      <div id="tournamentList">
+  const auth =
+    getAuth(app);
 
-        <div class="loading">
-          Loading tournaments...
-        </div>
+  const db =
+    getFirestore(app);
 
-      </div>
 
-    </main>
+  /* ELEMENTS */
 
-  </div>
+  const loginPage =
+    document.getElementById("loginPage");
 
+  const appPage =
+    document.getElementById("app");
 
-  <!-- ================= FIREBASE ================= -->
+  const loginBtn =
+    document.getElementById("loginBtn");
 
-  <script type="module">
+  const logoutBtn =
+    document.getElementById("logoutBtn");
 
-    import {
-      initializeApp
-    } from
-    "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+  const loginError =
+    document.getElementById("loginError");
 
+  const tournamentList =
+    document.getElementById("tournamentList");
 
-    import {
-      getAuth,
-      onAuthStateChanged,
-      signInWithEmailAndPassword,
-      signOut
-    } from
-    "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+  const refreshBtn =
+    document.getElementById("refreshBtn");
 
+  const addTournamentBtn =
+    document.getElementById("addTournamentBtn");
 
-    import {
-      getFirestore,
-      collection,
-      getDocs
-    } from
-    "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+  const addMessage =
+    document.getElementById("addMessage");
 
 
-    /* ================= ADMIN FIREBASE CONFIG ================= */
+  /* LOGIN */
 
-    const firebaseConfig = {
+  loginBtn.addEventListener(
+    "click",
+    async () => {
 
-      apiKey:
-        "AIzaSyCCtt4laZ43sipr3v_M8SnWdmswlJ4dXUI",
+      const email =
+        document
+          .getElementById("email")
+          .value
+          .trim();
 
-      authDomain:
-        "dream-esports-admin.firebaseapp.com",
+      const password =
+        document
+          .getElementById("password")
+          .value;
 
-      projectId:
-        "dream-esports-admin",
 
-      storageBucket:
-        "dream-esports-admin.firebasestorage.app",
+      loginError.textContent = "";
 
-      messagingSenderId:
-        "489749417915",
 
-      appId:
-        "1:489749417915:web:8ca1d0ab19a923c848fe9e",
+      if (!email || !password) {
 
-      measurementId:
-        "G-J35HJBH0GC"
+        loginError.textContent =
+          "Enter email and password.";
 
-    };
-
-
-    /* ================= INITIALIZE FIREBASE ================= */
-
-    const app =
-      initializeApp(firebaseConfig);
-
-    const auth =
-      getAuth(app);
-
-    const db =
-      getFirestore(app);
-
-
-    /* ================= ELEMENTS ================= */
-
-    const loginPage =
-      document.getElementById("loginPage");
-
-    const appPage =
-      document.getElementById("app");
-
-    const emailInput =
-      document.getElementById("email");
-
-    const passwordInput =
-      document.getElementById("password");
-
-    const loginBtn =
-      document.getElementById("loginBtn");
-
-    const logoutBtn =
-      document.getElementById("logoutBtn");
-
-    const loginError =
-      document.getElementById("loginError");
-
-    const tournamentList =
-      document.getElementById("tournamentList");
-
-    const refreshBtn =
-      document.getElementById("refreshBtn");
-
-
-    /* ================= LOGIN ================= */
-
-    loginBtn.addEventListener(
-      "click",
-      async () => {
-
-        const email =
-          emailInput.value.trim();
-
-        const password =
-          passwordInput.value;
-
-
-        loginError.textContent = "";
-
-
-        if (!email || !password) {
-
-          loginError.textContent =
-            "Enter email and password.";
-
-          return;
-
-        }
-
-
-        loginBtn.disabled = true;
-
-        loginBtn.textContent =
-          "LOGGING IN...";
-
-
-        try {
-
-          await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
-          );
-
-        }
-
-        catch (error) {
-
-          console.error(
-            "Firebase Login Error:",
-            error
-          );
-
-          loginError.textContent =
-            "Login failed: " +
-            error.code;
-
-        }
-
-
-        loginBtn.disabled = false;
-
-        loginBtn.textContent =
-          "LOGIN";
+        return;
 
       }
-    );
 
 
-    /* ================= AUTH STATE ================= */
+      loginBtn.disabled = true;
 
-    onAuthStateChanged(
-      auth,
-      async (user) => {
-
-        if (user) {
-
-          loginPage.style.display =
-            "none";
-
-          appPage.style.display =
-            "block";
-
-          await loadTournaments();
-
-        }
-
-        else {
-
-          loginPage.style.display =
-            "flex";
-
-          appPage.style.display =
-            "none";
-
-        }
-
-      }
-    );
-
-
-    /* ================= LOGOUT ================= */
-
-    logoutBtn.addEventListener(
-      "click",
-      async () => {
-
-        try {
-
-          await signOut(auth);
-
-        }
-
-        catch (error) {
-
-          console.error(error);
-
-        }
-
-      }
-    );
-
-
-    /* ================= LOAD TOURNAMENTS ================= */
-
-    async function loadTournaments() {
-
-      tournamentList.innerHTML =
-        `
-        <div class="loading">
-          Loading tournaments...
-        </div>
-        `;
+      loginBtn.textContent =
+        "LOGGING IN...";
 
 
       try {
 
-        const snapshot =
-          await getDocs(
-            collection(
-              db,
-              "Tournaments"
-            )
-          );
+        await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+      }
+
+      catch (error) {
+
+        console.error(error);
+
+        loginError.textContent =
+          "Login failed: " +
+          error.code;
+
+      }
 
 
-        let total =
-          0;
+      loginBtn.disabled = false;
 
-        let open =
-          0;
+      loginBtn.textContent =
+        "LOGIN";
 
-        let players =
-          0;
-
-
-        tournamentList.innerHTML =
-          "";
+    }
+  );
 
 
-        if (snapshot.empty) {
+  /* AUTH */
 
-          tournamentList.innerHTML =
-            `
-            <div class="empty">
-              No tournaments found.
-            </div>
-            `;
+  onAuthStateChanged(
+    auth,
+    async (user) => {
 
-        }
+      if (user) {
 
+        loginPage.style.display =
+          "none";
 
-        snapshot.forEach(
-          (doc) => {
+        appPage.style.display =
+          "block";
 
-            const data =
-              doc.data();
+        await loadTournaments();
 
+      }
 
-            total++;
+      else {
 
+        loginPage.style.display =
+          "flex";
 
-            const currentPlayers =
-              Number(
-                data.Players || 0
-              );
+        appPage.style.display =
+          "none";
 
+      }
 
-            players +=
-              currentPlayers;
-
-
-            const status =
-              data["Status "] ??
-              data.Status ??
-              "Open";
+    }
+  );
 
 
-            if (
-              String(status).toLowerCase() ===
-              "open"
-            ) {
+  /* LOGOUT */
 
-              open++;
+  logoutBtn.addEventListener(
+    "click",
+    async () => {
 
-            }
+      await signOut(auth);
 
-
-            const card =
-              document.createElement(
-                "div"
-              );
+    }
+  );
 
 
-            card.className =
-              "tournament";
+  /* ADD TOURNAMENT */
+
+  addTournamentBtn.addEventListener(
+    "click",
+    async () => {
+
+      const name =
+        document
+          .getElementById("tName")
+          .value
+          .trim();
+
+      const game =
+        document
+          .getElementById("tGame")
+          .value
+          .trim();
+
+      const mode =
+        document
+          .getElementById("tMode")
+          .value;
+
+      const date =
+        document
+          .getElementById("tDate")
+          .value;
+
+      const time =
+        document
+          .getElementById("tTime")
+          .value;
+
+      const maxPlayers =
+        Number(
+          document
+            .getElementById("tMaxPlayers")
+            .value
+        );
+
+      const entryFee =
+        Number(
+          document
+            .getElementById("tEntryFee")
+            .value || 0
+        );
+
+      const roomId =
+        document
+          .getElementById("tRoomId")
+          .value
+          .trim();
+
+      const status =
+        document
+          .getElementById("tStatus")
+          .value;
+
+      const description =
+        document
+          .getElementById("tDescription")
+          .value
+          .trim();
 
 
-            card.innerHTML = `
-
-              <div class="tournament-top">
-
-                <div class="tournament-name">
-                  ${escapeHTML(
-                    data.Name ||
-                    "Unnamed Tournament"
-                  )}
-                </div>
-
-                <div class="status">
-                  ${escapeHTML(
-                    String(status)
-                  )}
-                </div>
-
-              </div>
+      addMessage.textContent = "";
 
 
-              <div class="info-grid">
+      if (
+        !name ||
+        !game ||
+        !date ||
+        !time ||
+        !maxPlayers
+      ) {
 
-                <div class="info">
-                  <small>Game</small>
-                  <strong>
-                    ${escapeHTML(
-                      data.Game || "-"
-                    )}
-                  </strong>
-                </div>
+        addMessage.textContent =
+          "Please fill all required fields.";
 
+        addMessage.style.color =
+          "#ff5555";
 
-                <div class="info">
-                  <small>Mode</small>
-                  <strong>
-                    ${escapeHTML(
-                      data.Mode || "-"
-                    )}
-                  </strong>
-                </div>
+        return;
+
+      }
 
 
-                <div class="info">
-                  <small>Date</small>
-                  <strong>
-                    ${escapeHTML(
-                      data.Date || "-"
-                    )}
-                  </strong>
-                </div>
+      addTournamentBtn.disabled =
+        true;
+
+      addTournamentBtn.textContent =
+        "CREATING...";
 
 
-                <div class="info">
-                  <small>Time</small>
-                  <strong>
-                    ${escapeHTML(
-                      data.Time || "-"
-                    )}
-                  </strong>
-                </div>
+      try {
 
+        await addDoc(
+          collection(
+            db,
+            "Tournaments"
+          ),
+          {
 
-                <div class="info">
-                  <small>Players</small>
-                  <strong>
-                    ${currentPlayers}
-                    /
-                    ${Number(
-                      data.Maxplayers || 0
-                    )}
-                  </strong>
-                </div>
+            Name: name,
 
+            Game: game,
 
-                <div class="info">
-                  <small>Entry Fee</small>
-                  <strong>
-                    ${Number(
-                      data.entryfee || 0
-                    )}
-                  </strong>
-                </div>
+            Mode: mode,
 
+            Date: date,
 
-                <div class="info">
-                  <small>Room ID</small>
-                  <strong>
-                    ${escapeHTML(
-                      data.Roomid || "-"
-                    )}
-                  </strong>
-                </div>
+            Time: time,
 
+            Maxplayers: maxPlayers,
 
-                <div class="info">
-                  <small>Tournament ID</small>
-                  <strong>
-                    ${escapeHTML(
-                      doc.id
-                    )}
-                  </strong>
-                </div>
+            Players: 0,
 
-              </div>
+            entryfee: entryFee,
 
-            `;
+            Roomid: roomId,
 
+            Status: status,
 
-            tournamentList.appendChild(
-              card
-            );
+            Discription: description
 
           }
         );
 
 
-        document.getElementById(
-          "totalTournaments"
-        ).textContent =
-          total;
+        addMessage.textContent =
+          "Tournament created successfully!";
+
+        addMessage.style.color =
+          "#63e77a";
 
 
-        document.getElementById(
-          "openTournaments"
-        ).textContent =
-          open;
+        /* CLEAR FORM */
+
+        document
+          .getElementById("tName")
+          .value = "";
+
+        document
+          .getElementById("tDate")
+          .value = "";
+
+        document
+          .getElementById("tTime")
+          .value = "";
+
+        document
+          .getElementById("tMaxPlayers")
+          .value = "";
+
+        document
+          .getElementById("tEntryFee")
+          .value = "";
+
+        document
+          .getElementById("tRoomId")
+          .value = "";
+
+        document
+          .getElementById("tDescription")
+          .value = "";
 
 
-        document.getElementById(
-          "totalPlayers"
-        ).textContent =
-          players;
+        await loadTournaments();
+
+      }
+
+      catch (error) {
+
+        console.error(error);
+
+        addMessage.textContent =
+          "Failed: " +
+          (error.code ||
+           error.message);
+
+        addMessage.style.color =
+          "#ff5555";
 
       }
 
 
-      catch (error) {
+      addTournamentBtn.disabled =
+        false;
 
-        console.error(
-          "Firestore Error:",
-          error
+      addTournamentBtn.textContent =
+        "CREATE TOURNAMENT";
+
+    }
+  );
+
+
+  /* LOAD TOURNAMENTS */
+
+  async function loadTournaments() {
+
+    tournamentList.innerHTML =
+      `
+      <div class="loading">
+        Loading tournaments...
+      </div>
+      `;
+
+
+    try {
+
+      const snapshot =
+        await getDocs(
+          collection(
+            db,
+            "Tournaments"
+          )
         );
 
+
+      let total = 0;
+
+      let open = 0;
+
+      let players = 0;
+
+
+      tournamentList.innerHTML =
+        "";
+
+
+      if (snapshot.empty) {
 
         tournamentList.innerHTML =
           `
           <div class="empty">
-
-            Failed to load tournaments.
-
-            <br><br>
-
-            ${escapeHTML(
-              error.code ||
-              error.message
-            )}
-
+            No tournaments found.
           </div>
           `;
 
       }
 
+
+      snapshot.forEach(
+        (doc) => {
+
+          const data =
+            doc.data();
+
+
+          total++;
+
+
+          const currentPlayers =
+            Number(
+              data.Players || 0
+            );
+
+
+          players +=
+            currentPlayers;
+
+
+          const status =
+            data["Status "] ??
+            data.Status ??
+            "Open";
+
+
+          if (
+            String(status).toLowerCase() ===
+            "open"
+          ) {
+
+            open++;
+
+          }
+
+
+          const card =
+            document.createElement(
+              "div"
+            );
+
+
+          card.className =
+            "tournament";
+
+
+          card.innerHTML = `
+
+            <div class="tournament-top">
+
+              <div class="tournament-name">
+                ${escapeHTML(
+                  data.Name ||
+                  "Unnamed Tournament"
+                )}
+              </div>
+
+              <div class="status">
+                ${escapeHTML(
+                  String(status)
+                )}
+              </div>
+
+            </div>
+
+
+            <div class="info-grid">
+
+              <div class="info">
+                <small>Game</small>
+                <strong>
+                  ${escapeHTML(
+                    data.Game || "-"
+                  )}
+                </strong>
+              </div>
+
+              <div class="info">
+                <small>Mode</small>
+                <strong>
+                  ${escapeHTML(
+                    data.Mode || "-"
+                  )}
+                </strong>
+              </div>
+
+              <div class="info">
+                <small>Date</small>
+                <strong>
+                  ${escapeHTML(
+                    data.Date || "-"
+                  )}
+                </strong>
+              </div>
+
+              <div class="info">
+                <small>Time</small>
+                <strong>
+                  ${escapeHTML(
+                    data.Time || "-"
+                  )}
+                </strong>
+              </div>
+
+              <div class="info">
+                <small>Players</small>
+                <strong>
+                  ${currentPlayers}
+                  /
+                  ${Number(
+                    data.Maxplayers || 0
+                  )}
+                </strong>
+              </div>
+
+              <div class="info">
+                <small>Entry Fee</small>
+                <strong>
+                  ${Number(
+                    data.entryfee || 0
+                  )}
+                </strong>
+              </div>
+
+              <div class="info">
+                <small>Room ID</small>
+                <strong>
+                  ${escapeHTML(
+                    data.Roomid || "-"
+                  )}
+                </strong>
+              </div>
+
+              <div class="info">
+                <small>Tournament ID</small>
+                <strong>
+                  ${escapeHTML(
+                    doc.id
+                  )}
+                </strong>
+              </div>
+
+            </div>
+
+          `;
+
+
+          tournamentList.appendChild(
+            card
+          );
+
+        }
+      );
+
+
+      document.getElementById(
+        "totalTournaments"
+      ).textContent =
+        total;
+
+
+      document.getElementById(
+        "openTournaments"
+      ).textContent =
+        open;
+
+
+      document.getElementById(
+        "totalPlayers"
+      ).textContent =
+        players;
+
     }
 
+    catch (error) {
 
-    /* ================= REFRESH ================= */
+      console.error(error);
 
-    refreshBtn.addEventListener(
-      "click",
-      async () => {
-
-        await loadTournaments();
-
-      }
-    );
-
-
-    /* ================= HTML SECURITY ================= */
-
-    function escapeHTML(value) {
-
-      return String(value)
-
-        .replaceAll(
-          "&",
-          "&amp;"
-        )
-
-        .replaceAll(
-          "<",
-          "&lt;"
-        )
-
-        .replaceAll(
-          ">",
-          "&gt;"
-        )
-
-        .replaceAll(
-          '"',
-          "&quot;"
-        )
-
-        .replaceAll(
-          "'",
-          "&#039;"
-        );
-
-    }
-
-  </script>
-
-</body>
-</html>
+      tournamentList.innerHTML =
+        `
+        <div class="empty">
+          Failed to load tournaments.
+          <br><br>
+          ${escapeHTML(
+            error.code ||
+            error.mess
