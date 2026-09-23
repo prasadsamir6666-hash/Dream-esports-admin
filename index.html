@@ -15,140 +15,118 @@
     }
 
     body {
-      background: #070707;
+      background: #080b12;
       color: white;
       min-height: 100vh;
     }
 
-    button {
-      cursor: pointer;
-    }
-
-    /* ================= LOGIN ================= */
-
-    #loginScreen {
+    .login-page {
       min-height: 100vh;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       padding: 20px;
-      background:
-        radial-gradient(circle at top, #252525, #070707 55%);
     }
 
     .login-box {
       width: 100%;
       max-width: 400px;
-      background: #111;
-      border: 1px solid #292929;
-      border-radius: 22px;
-      padding: 35px 25px;
-      text-align: center;
-      box-shadow: 0 20px 70px rgba(0,0,0,.7);
+      background: #111722;
+      border: 1px solid #273044;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.5);
     }
 
     .logo {
-      width: 78px;
-      height: 78px;
-      margin: auto;
-      margin-bottom: 18px;
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg,#ffb300,#ff6f00);
-      color: #111;
-      font-size: 28px;
+      text-align: center;
+      font-size: 30px;
       font-weight: bold;
+      margin-bottom: 8px;
     }
 
-    .login-box h1 {
-      font-size: 25px;
-      margin-bottom: 7px;
+    .logo span {
+      color: #00e5ff;
     }
 
-    .login-subtitle {
-      color: #888;
-      font-size: 13px;
+    .subtitle {
+      text-align: center;
+      color: #8e99aa;
       margin-bottom: 28px;
     }
 
     input {
       width: 100%;
-      padding: 15px;
-      margin-bottom: 13px;
-      border-radius: 12px;
-      border: 1px solid #333;
-      background: #191919;
+      padding: 14px;
+      margin-bottom: 15px;
+      background: #080c14;
       color: white;
+      border: 1px solid #303a4e;
+      border-radius: 10px;
       outline: none;
-      font-size: 15px;
     }
 
     input:focus {
-      border-color: #ff9800;
+      border-color: #00e5ff;
     }
 
-    .login-btn {
+    button {
       width: 100%;
-      padding: 15px;
+      padding: 14px;
       border: none;
-      border-radius: 12px;
-      background: linear-gradient(135deg,#ffb300,#ff6f00);
-      color: #111;
-      font-size: 15px;
+      border-radius: 10px;
+      background: #00e5ff;
+      color: #001014;
       font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
     }
 
-    #loginMessage {
-      margin-top: 14px;
-      color: #ff7777;
-      font-size: 13px;
+    button:hover {
+      opacity: .9;
     }
 
+    #error {
+      margin-top: 15px;
+      color: #ff5c5c;
+      font-size: 14px;
+      line-height: 1.5;
+      word-break: break-word;
+    }
 
-    /* ================= ADMIN ================= */
-
-    #adminScreen {
+    #app {
       display: none;
     }
 
-    .topbar {
-      height: 70px;
-      padding: 0 20px;
-      background: #111;
-      border-bottom: 1px solid #292929;
+    header {
+      background: #111722;
+      border-bottom: 1px solid #273044;
+      padding: 18px 25px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 20;
+      align-items: center;
     }
 
-    .brand {
-      font-size: 20px;
-      font-weight: bold;
+    header h1 {
+      font-size: 22px;
     }
 
-    .brand span {
-      color: #ff9800;
+    header span {
+      color: #00e5ff;
     }
 
-    .logout-btn {
+    .logout {
       width: auto;
-      padding: 10px 16px;
-      border: 1px solid #444;
-      border-radius: 10px;
-      background: #202020;
+      padding: 10px 18px;
+      background: #ff4757;
       color: white;
+      font-size: 14px;
     }
 
     .container {
-      width: 100%;
-      max-width: 1100px;
+      max-width: 1200px;
       margin: auto;
-      padding: 25px 18px 50px;
+      padding: 25px;
     }
 
     .welcome {
@@ -156,748 +134,498 @@
     }
 
     .welcome h2 {
-      font-size: 26px;
-      margin-bottom: 7px;
+      margin-bottom: 5px;
     }
 
     .welcome p {
-      color: #888;
-      font-size: 13px;
+      color: #8e99aa;
     }
-
-
-    /* ================= STATS ================= */
 
     .stats {
       display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 15px;
       margin-bottom: 30px;
     }
 
-    .stat-card {
-      background: #111;
-      border: 1px solid #292929;
-      border-radius: 17px;
+    .stat {
+      background: #111722;
+      border: 1px solid #273044;
+      border-radius: 15px;
       padding: 20px;
     }
 
-    .stat-title {
-      color: #888;
-      font-size: 13px;
-      margin-bottom: 12px;
+    .stat p {
+      color: #8e99aa;
+      margin-bottom: 10px;
     }
 
-    .stat-number {
+    .stat h3 {
       font-size: 30px;
-      font-weight: bold;
-      color: #ff9800;
+      color: #00e5ff;
     }
-
-
-    /* ================= SECTION ================= */
 
     .section-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       margin-bottom: 15px;
     }
 
-    .section-title h3 {
-      font-size: 20px;
-    }
-
-    .refresh-btn {
-      width: auto;
-      padding: 9px 14px;
-      border: 1px solid #333;
-      border-radius: 9px;
-      background: #171717;
-      color: #ddd;
-    }
-
-
-    /* ================= TOURNAMENT ================= */
-
-    #tournamentList {
+    .tournament-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
       gap: 15px;
     }
 
-    .tournament-card {
-      background: #111;
-      border: 1px solid #292929;
-      border-radius: 17px;
+    .tournament {
+      background: #111722;
+      border: 1px solid #273044;
+      border-radius: 15px;
       padding: 20px;
-      transition: .2s;
     }
 
-    .tournament-card:hover {
-      border-color: #ff9800;
-    }
-
-    .tournament-name {
-      font-size: 19px;
-      font-weight: bold;
-      margin-bottom: 7px;
-    }
-
-    .game {
-      color: #ff9800;
-      font-size: 13px;
-      margin-bottom: 15px;
+    .tournament h3 {
+      margin-bottom: 12px;
+      color: #00e5ff;
     }
 
     .info {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      color: #c4ccda;
+      font-size: 14px;
     }
 
-    .info-box {
-      background: #191919;
-      border-radius: 10px;
-      padding: 10px;
+    .refresh {
+      width: auto;
+      margin-bottom: 15px;
+      background: #202a3c;
+      color: white;
     }
 
-    .info-label {
-      color: #777;
-      font-size: 10px;
-      margin-bottom: 5px;
-    }
-
-    .info-value {
-      font-size: 13px;
-      font-weight: bold;
-    }
-
-    .status {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 6px 10px;
-      border-radius: 20px;
-      background: #183b20;
-      color: #66e27b;
-      font-size: 11px;
-    }
-
-    .empty {
-      text-align: center;
-      padding: 40px 20px;
-      background: #111;
-      border: 1px solid #292929;
-      border-radius: 17px;
-      color: #777;
-    }
-
-    .loading {
-      text-align: center;
-      color: #888;
-      padding: 30px;
-    }
-
-    @media(max-width:500px) {
-
-      .brand {
-        font-size: 17px;
-      }
-
-      .welcome h2 {
-        font-size: 23px;
-      }
-
+    @media(max-width:700px) {
       .stats {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
       }
 
-      .stat-number {
-        font-size: 25px;
+      .info {
+        grid-template-columns: 1fr;
       }
 
+      header {
+        padding: 15px;
+      }
+
+      .container {
+        padding: 15px;
+      }
     }
   </style>
 </head>
 
-
 <body>
 
+  <!-- LOGIN -->
+  <div id="loginPage" class="login-page">
 
-<!-- ================= LOGIN ================= -->
+    <div class="login-box">
 
-<div id="loginScreen">
+      <div class="logo">
+        Dream <span>eSports</span>
+      </div>
 
-  <div class="login-box">
+      <div class="subtitle">
+        Admin Panel
+      </div>
 
-    <div class="logo">
-      DE
+      <input
+        type="email"
+        id="email"
+        placeholder="Admin Email"
+      >
+
+      <input
+        type="password"
+        id="password"
+        placeholder="Password"
+      >
+
+      <button onclick="loginAdmin()">
+        LOGIN
+      </button>
+
+      <div id="error"></div>
+
     </div>
-
-    <h1>Dream eSports</h1>
-
-    <div class="login-subtitle">
-      Admin Control Panel
-    </div>
-
-    <input
-      type="email"
-      id="email"
-      placeholder="Admin Email"
-    >
-
-    <input
-      type="password"
-      id="password"
-      placeholder="Password"
-    >
-
-    <button
-      class="login-btn"
-      onclick="loginAdmin()"
-    >
-      LOGIN TO ADMIN
-    </button>
-
-    <div id="loginMessage"></div>
-
-  </div>
-
-</div>
-
-
-
-<!-- ================= ADMIN ================= -->
-
-<div id="adminScreen">
-
-
-  <div class="topbar">
-
-    <div class="brand">
-      Dream <span>eSports</span> Admin
-    </div>
-
-    <button
-      class="logout-btn"
-      onclick="logoutAdmin()"
-    >
-      Logout
-    </button>
 
   </div>
 
 
+  <!-- ADMIN APP -->
+  <div id="app">
 
-  <div class="container">
+    <header>
+
+      <h1>
+        Dream <span>eSports</span> Admin
+      </h1>
+
+      <button class="logout" onclick="logoutAdmin()">
+        Logout
+      </button>
+
+    </header>
 
 
-    <div class="welcome">
+    <div class="container">
 
-      <h2>
-        Admin Dashboard
+      <div class="welcome">
+        <h2>Dashboard</h2>
+        <p>Manage your Dream eSports tournaments.</p>
+      </div>
+
+
+      <div class="stats">
+
+        <div class="stat">
+          <p>Total Tournaments</p>
+          <h3 id="totalTournaments">0</h3>
+        </div>
+
+        <div class="stat">
+          <p>Open Tournaments</p>
+          <h3 id="openTournaments">0</h3>
+        </div>
+
+        <div class="stat">
+          <p>Total Players</p>
+          <h3 id="totalPlayers">0</h3>
+        </div>
+
+      </div>
+
+
+      <h2 class="section-title">
+        Tournaments
       </h2>
 
-      <p id="adminEmail">
-        Admin
-      </p>
-
-    </div>
-
-
-
-    <!-- STATS -->
-
-    <div class="stats">
-
-      <div class="stat-card">
-
-        <div class="stat-title">
-          TOTAL TOURNAMENTS
-        </div>
-
-        <div
-          class="stat-number"
-          id="totalTournaments"
-        >
-          0
-        </div>
-
-      </div>
-
-
-      <div class="stat-card">
-
-        <div class="stat-title">
-          OPEN TOURNAMENTS
-        </div>
-
-        <div
-          class="stat-number"
-          id="openTournaments"
-        >
-          0
-        </div>
-
-      </div>
-
-
-      <div class="stat-card">
-
-        <div class="stat-title">
-          TOTAL PLAYERS
-        </div>
-
-        <div
-          class="stat-number"
-          id="totalPlayers"
-        >
-          0
-        </div>
-
-      </div>
-
-    </div>
-
-
-
-    <!-- TOURNAMENTS -->
-
-    <div class="section-title">
-
-      <h3>
-        Tournaments
-      </h3>
-
       <button
-        class="refresh-btn"
-        onclick="loadTournaments()"
-      >
+        class="refresh"
+        onclick="loadTournaments()">
         Refresh
       </button>
 
-    </div>
-
-
-    <div id="tournamentList">
-
-      <div class="loading">
-        Loading tournaments...
+      <div
+        id="tournamentList"
+        class="tournament-list">
       </div>
 
     </div>
 
-
   </div>
 
-</div>
 
+  <!-- FIREBASE -->
+  <script type="module">
 
+    import {
+      initializeApp
+    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
-<!-- ================= FIREBASE ================= -->
 
-<script type="module">
+    import {
+      getAuth,
+      onAuthStateChanged,
+      signInWithEmailAndPassword,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
-  import {
-    initializeApp
-  }
-  from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
+    import {
+      getFirestore,
+      collection,
+      getDocs
+    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
-  import {
-    getAuth,
-    onAuthStateChanged,
-    signInWithEmailAndPassword,
-    signOut
-  }
-  from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
+    const firebaseConfig = {
 
-  import {
-    getFirestore,
-    collection,
-    getDocs
-  }
-  from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+      apiKey:
+        "AIzaSyAeZnZ4tNZ7qY0cjfRdBq4J_Eahop37Qn4",
 
+      authDomain:
+        "dream-esports-51780.firebaseapp.com",
 
+      projectId:
+        "dream-esports-51780",
 
-  /* FIREBASE CONFIG */
+      storageBucket:
+        "dream-esports-51780.firebasestorage.app",
 
-  const firebaseConfig = {
+      messagingSenderId:
+        "959473187247",
 
-    apiKey:
-      "AIzaSyAeZnZ4tNZ7qY0cjfRdBq4J_Eahop37Qn4",
+      appId:
+        "1:959473187247:web:ba4a80a6da5b52d5fcd75a",
 
-    authDomain:
-      "dream-esports-51780.firebaseapp.com",
+      measurementId:
+        "G-DP6X3STGN0"
+    };
 
-    projectId:
-      "dream-esports-51780",
 
-    storageBucket:
-      "dream-esports-51780.firebasestorage.app",
+    const app = initializeApp(firebaseConfig);
 
-    messagingSenderId:
-      "959473187247",
+    const auth = getAuth(app);
 
-    appId:
-      "1:959473187247:web:ba4a80a6da5b52d5fcd75a",
+    const db = getFirestore(app);
 
-    measurementId:
-      "G-DP6X3STGN0"
 
-  };
+    /* LOGIN */
 
+    window.loginAdmin = async function() {
 
-  const app =
-    initializeApp(firebaseConfig);
+      const email =
+        document.getElementById("email").value.trim();
 
+      const password =
+        document.getElementById("password").value;
 
-  const auth =
-    getAuth(app);
+      const errorBox =
+        document.getElementById("error");
 
 
-  const db =
-    getFirestore(app);
+      errorBox.innerText = "";
 
 
+      if (!email || !password) {
 
-  /* ================= LOGIN ================= */
+        errorBox.innerText =
+          "Email and password required.";
 
-  window.loginAdmin = async function() {
-
-    const email =
-      document
-      .getElementById("email")
-      .value
-      .trim();
-
-
-    const password =
-      document
-      .getElementById("password")
-      .value;
-
-
-    const message =
-      document
-      .getElementById("loginMessage");
-
-
-    if (!email || !password) {
-
-      message.innerText =
-        "Enter email and password.";
-
-      return;
-
-    }
-
-
-    message.innerText =
-      "Logging in...";
-
-
-    try {
-
-      await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-
-      message.innerText = "";
-
-    }
-
-    catch(error) {
-
-      console.error(error);
-
-      message.innerText =
-        "Login failed.";
-
-    }
-
-  };
-
-
-
-  /* ================= AUTH ================= */
-
-  onAuthStateChanged(auth, (user) => {
-
-    if (user) {
-
-      document
-      .getElementById("loginScreen")
-      .style.display = "none";
-
-
-      document
-      .getElementById("adminScreen")
-      .style.display = "block";
-
-
-      document
-      .getElementById("adminEmail")
-      .innerText =
-        user.email;
-
-
-      loadTournaments();
-
-    }
-
-    else {
-
-      document
-      .getElementById("loginScreen")
-      .style.display = "flex";
-
-
-      document
-      .getElementById("adminScreen")
-      .style.display = "none";
-
-    }
-
-  });
-
-
-
-  /* ================= LOGOUT ================= */
-
-  window.logoutAdmin = async function() {
-
-    await signOut(auth);
-
-  };
-
-
-
-  /* ================= TOURNAMENTS ================= */
-
-  window.loadTournaments = async function() {
-
-    const list =
-      document
-      .getElementById("tournamentList");
-
-
-    list.innerHTML =
-      `<div class="loading">
-        Loading tournaments...
-      </div>`;
-
-
-    try {
-
-      const snapshot =
-        await getDocs(
-          collection(db, "Tournaments")
-        );
-
-
-      let total =
-        snapshot.size;
-
-
-      let open =
-        0;
-
-
-      let players =
-        0;
-
-
-      list.innerHTML = "";
-
-
-      if (total === 0) {
-
-        list.innerHTML =
-          `<div class="empty">
-            No tournaments found.
-          </div>`;
-
+        return;
       }
 
 
-      snapshot.forEach((doc) => {
+      try {
 
-        const data =
-          doc.data();
+        await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
 
+      } catch (error) {
 
-        const name =
-          data.Name || "Unnamed Tournament";
+        console.error(error);
 
+        errorBox.innerText =
+          "Login failed:\n" +
+          error.code +
+          "\n" +
+          error.message;
+      }
 
-        const game =
-          data.Game || "Free Fire";
-
-
-        const mode =
-          data.Mode || "-";
-
-
-        const date =
-          data.Date || "-";
-
-
-        const time =
-          data.Time || "-";
+    };
 
 
-        const maxPlayers =
-          data.Maxplayers || 0;
+    /* LOGOUT */
+
+    window.logoutAdmin = async function() {
+
+      await signOut(auth);
+
+    };
 
 
-        const currentPlayers =
-          data.Players || 0;
+    /* AUTH CHECK */
+
+    onAuthStateChanged(auth, (user) => {
+
+      const loginPage =
+        document.getElementById("loginPage");
+
+      const appPage =
+        document.getElementById("app");
 
 
-        const status =
-          data["Status "] ||
-          data.Status ||
-          "Open";
+      if (user) {
+
+        loginPage.style.display = "none";
+
+        appPage.style.display = "block";
+
+        loadTournaments();
+
+      } else {
+
+        loginPage.style.display = "flex";
+
+        appPage.style.display = "none";
+
+      }
+
+    });
 
 
-        if (
-          String(status).toLowerCase()
-          === "open"
-        ) {
+    /* TOURNAMENT LOAD */
 
-          open++;
+    window.loadTournaments = async function() {
+
+      const list =
+        document.getElementById("tournamentList");
+
+
+      list.innerHTML =
+        "<p>Loading tournaments...</p>";
+
+
+      try {
+
+        const snapshot =
+          await getDocs(
+            collection(db, "Tournaments")
+          );
+
+
+        let total = snapshot.size;
+
+        let open = 0;
+
+        let players = 0;
+
+
+        list.innerHTML = "";
+
+
+        snapshot.forEach((doc) => {
+
+          const data = doc.data();
+
+
+          const name =
+            data.Name || "Unnamed Tournament";
+
+          const game =
+            data.Game || "Free Fire";
+
+          const mode =
+            data.Mode || "-";
+
+          const date =
+            data.Date || "-";
+
+          const time =
+            data.Time || "-";
+
+          const maxPlayers =
+            data.Maxplayers || 0;
+
+          const currentPlayers =
+            data.Players || 0;
+
+          const status =
+            data["Status "] ||
+            data.Status ||
+            "Open";
+
+
+          if (
+            String(status).toLowerCase()
+            === "open"
+          ) {
+
+            open++;
+
+          }
+
+
+          players +=
+            Number(currentPlayers) || 0;
+
+
+          const card =
+            document.createElement("div");
+
+
+          card.className =
+            "tournament";
+
+
+          card.innerHTML = `
+
+            <h3>${name}</h3>
+
+            <div class="info">
+
+              <div>
+                Game: ${game}
+              </div>
+
+              <div>
+                Mode: ${mode}
+              </div>
+
+              <div>
+                Date: ${date}
+              </div>
+
+              <div>
+                Time: ${time}
+              </div>
+
+              <div>
+                Players: ${currentPlayers}/${maxPlayers}
+              </div>
+
+              <div>
+                Status: ${status}
+              </div>
+
+            </div>
+
+          `;
+
+
+          list.appendChild(card);
+
+        });
+
+
+        document.getElementById(
+          "totalTournaments"
+        ).innerText = total;
+
+
+        document.getElementById(
+          "openTournaments"
+        ).innerText = open;
+
+
+        document.getElementById(
+          "totalPlayers"
+        ).innerText = players;
+
+
+        if (total === 0) {
+
+          list.innerHTML =
+            "<p>No tournaments found.</p>";
 
         }
 
 
-        players +=
-          Number(currentPlayers) || 0;
+      } catch (error) {
 
+        console.error(error);
 
-        const card =
-          document.createElement("div");
+        list.innerHTML =
+          "<p>Failed to load tournaments: " +
+          error.message +
+          "</p>";
 
+      }
 
-        card.className =
-          "tournament-card";
+    };
 
-
-        card.innerHTML = `
-
-          <div class="tournament-name">
-            ${name}
-          </div>
-
-          <div class="game">
-            ${game}
-          </div>
-
-          <div class="info">
-
-            <div class="info-box">
-
-              <div class="info-label">
-                MODE
-              </div>
-
-              <div class="info-value">
-                ${mode}
-              </div>
-
-            </div>
-
-
-            <div class="info-box">
-
-              <div class="info-label">
-                DATE
-              </div>
-
-              <div class="info-value">
-                ${date}
-              </div>
-
-            </div>
-
-
-            <div class="info-box">
-
-              <div class="info-label">
-                TIME
-              </div>
-
-              <div class="info-value">
-                ${time}
-              </div>
-
-            </div>
-
-
-            <div class="info-box">
-
-              <div class="info-label">
-                PLAYERS
-              </div>
-
-              <div class="info-value">
-                ${currentPlayers}/${maxPlayers}
-              </div>
-
-            </div>
-
-          </div>
-
-
-          <div class="status">
-            ${status}
-          </div>
-
-        `;
-
-
-        list.appendChild(card);
-
-      });
-
-
-      document
-      .getElementById("totalTournaments")
-      .innerText = total;
-
-
-      document
-      .getElementById("openTournaments")
-      .innerText = open;
-
-
-      document
-      .getElementById("totalPlayers")
-      .innerText = players;
-
-    }
-
-    catch(error) {
-
-      console.error(error);
-
-
-      list.innerHTML =
-        `<div class="empty">
-          Failed to load tournaments.
-          <br><br>
-          Check Firestore rules.
-        </div>`;
-
-    }
-
-  };
-
-</script>
+  </script>
 
 </body>
 </html>
