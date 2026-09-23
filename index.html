@@ -16,23 +16,23 @@
 
     body {
       background: #070a10;
-      color: #ffffff;
+      color: white;
       min-height: 100vh;
     }
 
-    /* LOGIN */
+    /* ================= LOGIN ================= */
 
     #loginPage {
       min-height: 100vh;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       padding: 20px;
     }
 
     .login-box {
       width: 100%;
-      max-width: 400px;
+      max-width: 410px;
       background: #101621;
       border: 1px solid #293348;
       border-radius: 22px;
@@ -97,7 +97,7 @@
       word-break: break-word;
     }
 
-    /* ADMIN */
+    /* ================= ADMIN ================= */
 
     #adminPage {
       display: none;
@@ -108,8 +108,8 @@
       border-bottom: 1px solid #293348;
       padding: 18px 25px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       position: sticky;
       top: 0;
       z-index: 10;
@@ -153,7 +153,7 @@
       color: #8d98aa;
     }
 
-    /* STATS */
+    /* ================= STATS ================= */
 
     .stats {
       display: grid;
@@ -179,7 +179,7 @@
       color: #00e5ff;
     }
 
-    /* TOURNAMENT */
+    /* ================= TOURNAMENT ================= */
 
     .section-head {
       display: flex;
@@ -239,7 +239,7 @@
       padding: 20px 0;
     }
 
-    /* MOBILE */
+    /* ================= MOBILE ================= */
 
     @media (max-width: 700px) {
 
@@ -267,7 +267,6 @@
         align-items: flex-start;
         gap: 10px;
       }
-
     }
   </style>
 </head>
@@ -275,7 +274,7 @@
 <body>
 
 
-  <!-- LOGIN PAGE -->
+  <!-- ================= LOGIN PAGE ================= -->
 
   <div id="loginPage">
 
@@ -318,7 +317,7 @@
   </div>
 
 
-  <!-- ADMIN PAGE -->
+  <!-- ================= ADMIN PAGE ================= -->
 
   <div id="adminPage">
 
@@ -421,7 +420,7 @@
   </div>
 
 
-  <!-- FIREBASE -->
+  <!-- ================= FIREBASE ================= -->
 
   <script type="module">
 
@@ -445,7 +444,7 @@
     } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
-    /* NEW ADMIN WEB APP CONFIG */
+    /* ================= FIREBASE CONFIG ================= */
 
     const firebaseConfig = {
 
@@ -465,15 +464,15 @@
         "959473187247",
 
       appId:
-        "1:959473187247:web:4a83c76273177002fcd75a",
+        "1:959473187247:web:3d3c814ca7df017bfcd75a",
 
       measurementId:
-        "G-1G2Q3EK2ZD"
+        "G-Y6ZLMCTWSD"
 
     };
 
 
-    /* INITIALIZE */
+    /* ================= INITIALIZE ================= */
 
     const app =
       initializeApp(firebaseConfig);
@@ -485,24 +484,30 @@
       getFirestore(app);
 
 
-    /* LOGIN */
+    /* ================= LOGIN ================= */
 
     window.loginAdmin = async function() {
 
       const email =
-        document.getElementById("email")
+        document
+          .getElementById("email")
           .value
           .trim();
 
       const password =
-        document.getElementById("password")
+        document
+          .getElementById("password")
           .value;
 
       const errorBox =
-        document.getElementById("loginError");
+        document.getElementById(
+          "loginError"
+        );
 
       const button =
-        document.getElementById("loginButton");
+        document.getElementById(
+          "loginButton"
+        );
 
 
       errorBox.innerText = "";
@@ -514,13 +519,13 @@
           "Email and password required.";
 
         return;
-
       }
 
 
       button.disabled = true;
 
-      button.innerText = "LOGGING IN...";
+      button.innerText =
+        "LOGGING IN...";
 
 
       try {
@@ -549,14 +554,15 @@
 
         button.disabled = false;
 
-        button.innerText = "LOGIN";
+        button.innerText =
+          "LOGIN";
 
       }
 
     };
 
 
-    /* LOGOUT */
+    /* ================= LOGOUT ================= */
 
     window.logoutAdmin = async function() {
 
@@ -573,17 +579,21 @@
     };
 
 
-    /* AUTH STATE */
+    /* ================= AUTH STATE ================= */
 
     onAuthStateChanged(
       auth,
       (user) => {
 
         const loginPage =
-          document.getElementById("loginPage");
+          document.getElementById(
+            "loginPage"
+          );
 
         const adminPage =
-          document.getElementById("adminPage");
+          document.getElementById(
+            "adminPage"
+          );
 
 
         if (user) {
@@ -593,7 +603,6 @@
 
           adminPage.style.display =
             "block";
-
 
           loadTournaments();
 
@@ -611,7 +620,7 @@
     );
 
 
-    /* LOAD TOURNAMENTS */
+    /* ================= LOAD TOURNAMENTS ================= */
 
     window.loadTournaments =
       async function() {
