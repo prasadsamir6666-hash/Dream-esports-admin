@@ -22,7 +22,6 @@ body{
   display:none !important;
 }
 
-/* LOGIN */
 #loginPage{
   min-height:100vh;
   display:flex;
@@ -36,10 +35,10 @@ body{
   width:100%;
   max-width:400px;
   padding:35px 25px;
-  border:1px solid #3b3b3b;
+  border:1px solid #333;
   border-radius:20px;
   background:#111;
-  box-shadow:0 0 40px rgba(255,140,0,.12);
+  box-shadow:0 0 40px rgba(255,140,0,.15);
 }
 
 .logo{
@@ -83,8 +82,8 @@ button{
   cursor:pointer;
 }
 
-button:active{
-  transform:scale(.98);
+button:disabled{
+  opacity:.6;
 }
 
 #error{
@@ -94,9 +93,11 @@ button:active{
   font-size:14px;
 }
 
-/* APP */
-#app{
-  min-height:100vh;
+#success{
+  color:#00e676;
+  text-align:center;
+  margin-top:15px;
+  font-size:14px;
 }
 
 header{
@@ -137,7 +138,6 @@ header h1{
   color:#888;
 }
 
-/* STATS */
 .stats{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -163,7 +163,6 @@ header h1{
   font-size:28px;
 }
 
-/* FORM */
 .section-title{
   margin-bottom:15px;
   color:#ff9800;
@@ -197,12 +196,50 @@ header h1{
   margin:6px 0;
 }
 
+.tournament-actions{
+  display:flex;
+  gap:10px;
+  margin-top:15px;
+}
+
+.edit-btn{
+  background:linear-gradient(135deg,#2196f3,#1565c0);
+}
+
+.cancel-btn{
+  background:#333;
+}
+
+.save-btn{
+  background:linear-gradient(135deg,#00c853,#008f3d);
+}
+
 .refresh{
   margin-top:15px;
   background:#222;
 }
 
+#editBox{
+  margin-top:25px;
+  border:1px solid #ff9800;
+}
+
+.edit-title{
+  color:#ff9800;
+  margin-bottom:18px;
+}
+
+.edit-actions{
+  display:flex;
+  gap:10px;
+}
+
+.edit-actions button{
+  flex:1;
+}
+
 @media(max-width:700px){
+
   .stats{
     grid-template-columns:1fr;
   }
@@ -214,19 +251,33 @@ header h1{
   .full{
     grid-column:auto;
   }
+
+  .tournament-actions{
+    flex-direction:column;
+  }
+
+  .edit-actions{
+    flex-direction:column;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN PAGE -->
+<!-- LOGIN -->
+
 <div id="loginPage">
 
   <div class="login-box">
 
-    <div class="logo">DREAM eSPORTS</div>
-    <div class="subtitle">Admin Panel</div>
+    <div class="logo">
+      DREAM eSPORTS
+    </div>
+
+    <div class="subtitle">
+      Admin Panel
+    </div>
 
     <input
       type="email"
@@ -242,11 +293,14 @@ header h1{
       autocomplete="current-password"
     >
 
-    <button id="loginBtn" type="button">
+    <button
+      id="loginBtn"
+      type="button">
       LOGIN
     </button>
 
     <div id="error"></div>
+    <div id="success"></div>
 
   </div>
 
@@ -254,75 +308,165 @@ header h1{
 
 
 <!-- ADMIN APP -->
+
 <div id="app" class="hidden">
 
 <header>
-  <h1>Dream eSports Admin</h1>
-  <button class="logout" id="logoutBtn" type="button">
+
+  <h1>
+    Dream eSports Admin
+  </h1>
+
+  <button
+    class="logout"
+    id="logoutBtn"
+    type="button">
     Logout
   </button>
+
 </header>
+
 
 <div class="container">
 
   <div class="welcome">
-    <h2>Admin Dashboard</h2>
+
+    <h2>
+      Admin Dashboard
+    </h2>
+
     <p id="adminEmail"></p>
+
   </div>
 
+
   <!-- STATS -->
+
   <div class="stats">
 
     <div class="card">
-      <h3>Total Tournaments</h3>
-      <strong id="totalTournaments">0</strong>
+
+      <h3>
+        Total Tournaments
+      </h3>
+
+      <strong id="totalTournaments">
+        0
+      </strong>
+
     </div>
 
-    <div class="card">
-      <h3>Open Tournaments</h3>
-      <strong id="openTournaments">0</strong>
-    </div>
 
     <div class="card">
-      <h3>Total Players</h3>
-      <strong id="totalPlayers">0</strong>
+
+      <h3>
+        Open Tournaments
+      </h3>
+
+      <strong id="openTournaments">
+        0
+      </strong>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        Total Players
+      </h3>
+
+      <strong id="totalPlayers">
+        0
+      </strong>
+
     </div>
 
   </div>
 
 
   <!-- ADD TOURNAMENT -->
+
   <div class="card">
 
-    <h2 class="section-title">Add Tournament</h2>
+    <h2 class="section-title">
+      Add Tournament
+    </h2>
 
     <div class="form-grid">
 
-      <input id="tName" placeholder="Tournament Name">
+      <input
+        id="tName"
+        placeholder="Tournament Name"
+      >
 
-      <input id="tGame" value="Free Fire" placeholder="Game">
+      <input
+        id="tGame"
+        value="Free Fire"
+        placeholder="Game"
+      >
 
       <select id="tMode">
-        <option value="1 VS 1">1 VS 1</option>
-        <option value="2 VS 2">2 VS 2</option>
-        <option value="4 VS 4">4 VS 4</option>
-        <option value="Squad">Squad</option>
+
+        <option value="1 VS 1">
+          1 VS 1
+        </option>
+
+        <option value="2 VS 2">
+          2 VS 2
+        </option>
+
+        <option value="4 VS 4">
+          4 VS 4
+        </option>
+
+        <option value="Squad">
+          Squad
+        </option>
+
       </select>
 
-      <input id="tDate" type="date">
+      <input
+        id="tDate"
+        type="date"
+      >
 
-      <input id="tTime" type="time">
+      <input
+        id="tTime"
+        type="time"
+      >
 
-      <input id="tMax" type="number" placeholder="Maximum Players">
+      <input
+        id="tMax"
+        type="number"
+        placeholder="Maximum Players"
+      >
 
-      <input id="tFee" type="number" placeholder="Entry Fee">
+      <input
+        id="tFee"
+        type="number"
+        placeholder="Entry Fee"
+      >
 
-      <input id="tRoom" placeholder="Room ID">
+      <input
+        id="tRoom"
+        placeholder="Room ID"
+      >
 
       <select id="tStatus">
-        <option value="Open">Open</option>
-        <option value="Closed">Closed</option>
-        <option value="Upcoming">Upcoming</option>
+
+        <option value="Open">
+          Open
+        </option>
+
+        <option value="Closed">
+          Closed
+        </option>
+
+        <option value="Upcoming">
+          Upcoming
+        </option>
+
       </select>
 
       <textarea
@@ -344,12 +488,98 @@ header h1{
   </div>
 
 
-  <!-- TOURNAMENTS -->
+  <!-- EDIT -->
+
+  <div
+    id="editBox"
+    class="card hidden">
+
+    <h2 class="edit-title">
+      ✏️ Edit Tournament
+    </h2>
+
+    <div class="form-grid">
+
+      <input id="editName" placeholder="Tournament Name">
+
+      <input id="editGame" placeholder="Game">
+
+      <select id="editMode">
+
+        <option value="1 VS 1">1 VS 1</option>
+        <option value="2 VS 2">2 VS 2</option>
+        <option value="4 VS 4">4 VS 4</option>
+        <option value="Squad">Squad</option>
+
+      </select>
+
+      <input id="editDate" type="date">
+
+      <input id="editTime" type="time">
+
+      <input
+        id="editMax"
+        type="number"
+        placeholder="Maximum Players">
+
+      <input
+        id="editFee"
+        type="number"
+        placeholder="Entry Fee">
+
+      <input
+        id="editRoom"
+        placeholder="Room ID">
+
+      <select id="editStatus">
+
+        <option value="Open">Open</option>
+        <option value="Closed">Closed</option>
+        <option value="Upcoming">Upcoming</option>
+
+      </select>
+
+      <textarea
+        id="editDescription"
+        class="full"
+        rows="4"
+        placeholder="Tournament Description">
+      </textarea>
+
+      <div class="edit-actions full">
+
+        <button
+          id="saveEditBtn"
+          class="save-btn"
+          type="button">
+          SAVE CHANGES
+        </button>
+
+        <button
+          id="cancelEditBtn"
+          class="cancel-btn"
+          type="button">
+          CANCEL
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- TOURNAMENT LIST -->
+
   <div style="margin-top:30px;">
 
-    <h2 class="section-title">Tournaments</h2>
+    <h2 class="section-title">
+      Tournaments
+    </h2>
 
-    <div id="tournamentList"></div>
+    <div id="tournamentList">
+      Loading...
+    </div>
 
     <button
       id="refreshBtn"
@@ -361,10 +591,12 @@ header h1{
   </div>
 
 </div>
+
 </div>
 
 
 <!-- FIREBASE -->
+
 <script type="module">
 
 import {
@@ -382,297 +614,437 @@ import {
   getFirestore,
   collection,
   addDoc,
-  getDocs
+  getDocs,
+  doc,
+  updateDoc
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
-/* FIREBASE CONFIG */
+/* ADMIN FIREBASE */
 
 const firebaseConfig = {
 
-  apiKey: "AIzaSyCCtt4laZ43sipr3v_M8SnWdmswlJ4dXUI",
+  apiKey:
+  "AIzaSyCCtt4laZ43sipr3v_M8SnWdmswlJ4dXUI",
 
-  authDomain: "dream-esports-admin.firebaseapp.com",
+  authDomain:
+  "dream-esports-admin.firebaseapp.com",
 
-  projectId: "dream-esports-admin",
+  projectId:
+  "dream-esports-admin",
 
-  storageBucket: "dream-esports-admin.firebasestorage.app",
+  storageBucket:
+  "dream-esports-admin.firebasestorage.app",
 
-  messagingSenderId: "489749417915",
+  messagingSenderId:
+  "489749417915",
 
-  appId: "1:489749417915:web:8ca1d0ab19a923c848fe9",
+  appId:
+  "1:489749417915:web:8ca1d0ab19a923c848fe9",
 
-  measurementId: "G-J35HJBH0GC"
+  measurementId:
+  "G-J35HJBH0GC"
 
 };
 
 
-/* INITIALIZE */
+const app =
+  initializeApp(firebaseConfig);
 
-const app = initializeApp(firebaseConfig);
+const auth =
+  getAuth(app);
 
-const auth = getAuth(app);
-
-const db = getFirestore(app);
+const db =
+  getFirestore(app);
 
 
 /* ELEMENTS */
 
-const loginPage = document.getElementById("loginPage");
-const adminApp = document.getElementById("app");
+const loginPage =
+  document.getElementById("loginPage");
 
-const emailInput = document.getElementById("email");
-const passwordInput = document.getElementById("password");
+const adminApp =
+  document.getElementById("app");
 
-const loginBtn = document.getElementById("loginBtn");
-const logoutBtn = document.getElementById("logoutBtn");
+const emailInput =
+  document.getElementById("email");
 
-const errorBox = document.getElementById("error");
+const passwordInput =
+  document.getElementById("password");
 
-const adminEmail = document.getElementById("adminEmail");
+const loginBtn =
+  document.getElementById("loginBtn");
+
+const logoutBtn =
+  document.getElementById("logoutBtn");
+
+const errorBox =
+  document.getElementById("error");
+
+const successBox =
+  document.getElementById("success");
+
+const adminEmail =
+  document.getElementById("adminEmail");
 
 
 /* LOGIN */
 
-loginBtn.addEventListener("click", async () => {
+loginBtn.addEventListener(
+  "click",
+  async function(){
 
-  const email = emailInput.value.trim();
-  const password = passwordInput.value;
+    errorBox.textContent = "";
+    successBox.textContent = "";
 
-  errorBox.textContent = "";
+    const email =
+      emailInput.value.trim();
 
-  if (!email || !password) {
+    const password =
+      passwordInput.value;
 
-    errorBox.textContent =
-      "Please enter email and password.";
-
-    return;
-  }
-
-  loginBtn.disabled = true;
-  loginBtn.textContent = "LOGGING IN...";
-
-  try {
-
-    await signInWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-
-  } catch (error) {
-
-    console.error(error);
-
-    if (error.code === "auth/invalid-credential") {
+    if(!email){
 
       errorBox.textContent =
-        "Email or password is incorrect.";
+        "Please enter admin email.";
 
-    } else if (error.code === "auth/user-not-found") {
+      return;
 
-      errorBox.textContent =
-        "Admin account not found.";
-
-    } else if (error.code === "auth/wrong-password") {
-
-      errorBox.textContent =
-        "Wrong password.";
-
-    } else if (error.code === "auth/invalid-email") {
-
-      errorBox.textContent =
-        "Invalid email address.";
-
-    } else {
-
-      errorBox.textContent =
-        error.message;
     }
 
-  } finally {
+    if(!password){
 
-    loginBtn.disabled = false;
-    loginBtn.textContent = "LOGIN";
+      errorBox.textContent =
+        "Please enter password.";
+
+      return;
+
+    }
+
+    loginBtn.disabled = true;
+
+    loginBtn.textContent =
+      "LOGGING IN...";
+
+
+    try{
+
+      const result =
+        await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+
+      console.log(
+        "LOGIN SUCCESS:",
+        result.user.email
+      );
+
+      successBox.textContent =
+        "Login successful!";
+
+    }
+
+    catch(error){
+
+      console.error(
+        "LOGIN ERROR:",
+        error
+      );
+
+      errorBox.textContent =
+        getFirebaseError(error);
+
+    }
+
+    finally{
+
+      loginBtn.disabled = false;
+
+      loginBtn.textContent =
+        "LOGIN";
+
+    }
 
   }
+);
 
-});
 
+/* ENTER KEY */
 
-/* ENTER KEY LOGIN */
+passwordInput.addEventListener(
+  "keydown",
+  function(event){
 
-passwordInput.addEventListener("keydown", (event) => {
+    if(event.key === "Enter"){
 
-  if (event.key === "Enter") {
+      loginBtn.click();
 
-    loginBtn.click();
+    }
 
   }
-
-});
+);
 
 
 /* AUTH STATE */
 
-onAuthStateChanged(auth, async (user) => {
+onAuthStateChanged(
+  auth,
+  async function(user){
 
-  if (user) {
+    console.log(
+      "AUTH STATE:",
+      user
+    );
 
-    loginPage.classList.add("hidden");
+    if(user){
 
-    adminApp.classList.remove("hidden");
+      loginPage.classList.add(
+        "hidden"
+      );
 
-    adminEmail.textContent =
-      "Logged in as: " + user.email;
+      adminApp.classList.remove(
+        "hidden"
+      );
 
-    await loadTournaments();
+      adminEmail.textContent =
+        "Logged in as: " +
+        user.email;
 
-  } else {
+      await loadTournaments();
 
-    loginPage.classList.remove("hidden");
+    }
 
-    adminApp.classList.add("hidden");
+    else{
+
+      loginPage.classList.remove(
+        "hidden"
+      );
+
+      adminApp.classList.add(
+        "hidden"
+      );
+
+    }
+
+  }
+);
+
+
+/* FIREBASE ERROR */
+
+function getFirebaseError(error){
+
+  if(
+    error.code ===
+    "auth/invalid-credential"
+  ){
+
+    return "Email or password is incorrect.";
 
   }
 
-});
+  if(
+    error.code ===
+    "auth/invalid-email"
+  ){
+
+    return "Invalid email address.";
+
+  }
+
+  if(
+    error.code ===
+    "auth/user-not-found"
+  ){
+
+    return "Admin account not found.";
+
+  }
+
+  if(
+    error.code ===
+    "auth/wrong-password"
+  ){
+
+    return "Wrong password.";
+
+  }
+
+  if(
+    error.code ===
+    "auth/too-many-requests"
+  ){
+
+    return "Too many attempts. Try again later.";
+
+  }
+
+  return error.message ||
+    "Login failed.";
+
+}
 
 
 /* LOGOUT */
 
-logoutBtn.addEventListener("click", async () => {
+logoutBtn.addEventListener(
+  "click",
+  async function(){
 
-  await signOut(auth);
+    await signOut(auth);
 
-});
+  }
+);
 
 
 /* ADD TOURNAMENT */
 
 document
 .getElementById("addTournamentBtn")
-.addEventListener("click", async () => {
+.addEventListener(
+  "click",
+  async function(){
 
-  const name =
-    document.getElementById("tName").value.trim();
+    const name =
+      document.getElementById("tName")
+      .value.trim();
 
-  const game =
-    document.getElementById("tGame").value.trim();
+    const game =
+      document.getElementById("tGame")
+      .value.trim();
 
-  const mode =
-    document.getElementById("tMode").value;
+    const mode =
+      document.getElementById("tMode")
+      .value;
 
-  const date =
-    document.getElementById("tDate").value;
+    const date =
+      document.getElementById("tDate")
+      .value;
 
-  const time =
-    document.getElementById("tTime").value;
+    const time =
+      document.getElementById("tTime")
+      .value;
 
-  const maxplayers =
-    Number(document.getElementById("tMax").value);
+    const maxplayers =
+      Number(
+        document.getElementById("tMax")
+        .value
+      );
 
-  const entryfee =
-    Number(document.getElementById("tFee").value);
+    const entryfee =
+      Number(
+        document.getElementById("tFee")
+        .value
+      );
 
-  const roomid =
-    document.getElementById("tRoom").value.trim();
+    const roomid =
+      document.getElementById("tRoom")
+      .value.trim();
 
-  const status =
-    document.getElementById("tStatus").value;
+    const status =
+      document.getElementById("tStatus")
+      .value;
 
-  const description =
-    document.getElementById("tDescription").value.trim();
+    const description =
+      document.getElementById("tDescription")
+      .value.trim();
 
 
-  if (!name || !date || !time || !maxplayers) {
+    if(
+      !name ||
+      !date ||
+      !time ||
+      !maxplayers
+    ){
 
-    alert("Please fill the required fields.");
+      alert(
+        "Please fill required fields."
+      );
 
-    return;
+      return;
+
+    }
+
+
+    try{
+
+      await addDoc(
+        collection(db,"Tournaments"),
+        {
+
+          Name:name,
+          Game:game,
+          Mode:mode,
+          Date:date,
+          Time:time,
+          Maxplayers:maxplayers,
+          Players:0,
+          entryfee:entryfee,
+          Roomid:roomid,
+          Status:status,
+          Discription:description
+
+        }
+      );
+
+
+      alert(
+        "Tournament added successfully!"
+      );
+
+
+      document.getElementById("tName").value="";
+      document.getElementById("tDate").value="";
+      document.getElementById("tTime").value="";
+      document.getElementById("tMax").value="";
+      document.getElementById("tFee").value="";
+      document.getElementById("tRoom").value="";
+      document.getElementById("tDescription").value="";
+
+
+      await loadTournaments();
+
+    }
+
+    catch(error){
+
+      console.error(error);
+
+      alert(
+        "Failed to add tournament: " +
+        error.message
+      );
+
+    }
+
   }
-
-
-  try {
-
-    await addDoc(
-      collection(db, "Tournaments"),
-      {
-
-        Name: name,
-
-        Game: game,
-
-        Mode: mode,
-
-        Date: date,
-
-        Time: time,
-
-        Maxplayers: maxplayers,
-
-        Players: 0,
-
-        entryfee: entryfee,
-
-        Roomid: roomid,
-
-        Status: status,
-
-        Discription: description
-
-      }
-    );
-
-
-    alert("Tournament added successfully!");
-
-    document.getElementById("tName").value = "";
-
-    document.getElementById("tDate").value = "";
-
-    document.getElementById("tTime").value = "";
-
-    document.getElementById("tMax").value = "";
-
-    document.getElementById("tFee").value = "";
-
-    document.getElementById("tRoom").value = "";
-
-    document.getElementById("tDescription").value = "";
-
-
-    await loadTournaments();
-
-  } catch (error) {
-
-    console.error(error);
-
-    alert(
-      "Failed to add tournament: " +
-      error.message
-    );
-
-  }
-
-});
+);
 
 
 /* LOAD TOURNAMENTS */
 
-async function loadTournaments() {
+async function loadTournaments(){
 
   const list =
-    document.getElementById("tournamentList");
+    document.getElementById(
+      "tournamentList"
+    );
 
-  list.innerHTML = "Loading...";
+  list.innerHTML =
+    "Loading...";
 
 
-  try {
+  try{
 
     const snapshot =
       await getDocs(
-        collection(db, "Tournaments")
+        collection(
+          db,
+          "Tournaments"
+        )
       );
 
 
@@ -680,85 +1052,145 @@ async function loadTournaments() {
     let open = 0;
     let players = 0;
 
+
     list.innerHTML = "";
 
 
-    snapshot.forEach((doc) => {
+    snapshot.forEach(
+      function(item){
 
-      const data = doc.data();
+        const data =
+          item.data();
 
-      total++;
 
-      if (
-        String(data.Status)
-          .toLowerCase() === "open"
-      ) {
+        total++;
 
-        open++;
+
+        if(
+          String(data.Status)
+          .toLowerCase() ===
+          "open"
+        ){
+
+          open++;
+
+        }
+
+
+        players +=
+          Number(
+            data.Players || 0
+          );
+
+
+        const div =
+          document.createElement("div");
+
+        div.className =
+          "tournament";
+
+
+        div.innerHTML = `
+
+          <h3>
+            ${data.Name || "Unnamed Tournament"}
+          </h3>
+
+          <p>
+            Game: ${data.Game || "-"}
+          </p>
+
+          <p>
+            Mode: ${data.Mode || "-"}
+          </p>
+
+          <p>
+            Date: ${data.Date || "-"}
+          </p>
+
+          <p>
+            Time: ${data.Time || "-"}
+          </p>
+
+          <p>
+            Players:
+            ${data.Players || 0}
+            /
+            ${data.Maxplayers || 0}
+          </p>
+
+          <p>
+            Entry Fee:
+            ${data.entryfee || 0}
+          </p>
+
+          <p>
+            Room ID:
+            ${data.Roomid || "-"}
+          </p>
+
+          <p>
+            Status:
+            ${data.Status || "-"}
+          </p>
+
+          <p>
+            Tournament ID:
+            ${item.id}
+          </p>
+
+          <div class="tournament-actions">
+
+            <button
+              class="edit-btn"
+              type="button">
+              ✏️ EDIT
+            </button>
+
+          </div>
+
+        `;
+
+
+        div
+        .querySelector(".edit-btn")
+        .addEventListener(
+          "click",
+          function(){
+
+            openEditForm(
+              item.id,
+              data
+            );
+
+          }
+        );
+
+
+        list.appendChild(div);
 
       }
-
-      players += Number(data.Players || 0);
-
-
-      const div =
-        document.createElement("div");
-
-      div.className = "tournament";
-
-      div.innerHTML = `
-
-        <h3>
-          ${data.Name || "Unnamed Tournament"}
-        </h3>
-
-        <p>Game: ${data.Game || "-"}</p>
-
-        <p>Mode: ${data.Mode || "-"}</p>
-
-        <p>Date: ${data.Date || "-"}</p>
-
-        <p>Time: ${data.Time || "-"}</p>
-
-        <p>
-          Players:
-          ${data.Players || 0}
-          /
-          ${data.Maxplayers || 0}
-        </p>
-
-        <p>Entry Fee: ${data.entryfee || 0}</p>
-
-        <p>Room ID: ${data.Roomid || "-"}</p>
-
-        <p>Status: ${data.Status || "-"}</p>
-
-        <p>
-          Tournament ID:
-          ${doc.id}
-        </p>
-
-      `;
-
-      list.appendChild(div);
-
-    });
+    );
 
 
     document.getElementById(
       "totalTournaments"
-    ).textContent = total;
+    ).textContent =
+      total;
 
     document.getElementById(
       "openTournaments"
-    ).textContent = open;
+    ).textContent =
+      open;
 
     document.getElementById(
       "totalPlayers"
-    ).textContent = players;
+    ).textContent =
+      players;
 
+  }
 
-  } catch (error) {
+  catch(error){
 
     console.error(error);
 
@@ -770,13 +1202,225 @@ async function loadTournaments() {
 }
 
 
-/* REFRESH */
+/* EDIT */
+
+let editingTournamentId = null;
+
+
+function openEditForm(
+  id,
+  data
+){
+
+  editingTournamentId =
+    id;
+
+
+  document.getElementById(
+    "editName"
+  ).value =
+    data.Name || "";
+
+
+  document.getElementById(
+    "editGame"
+  ).value =
+    data.Game || "Free Fire";
+
+
+  document.getElementById(
+    "editMode"
+  ).value =
+    data.Mode || "1 VS 1";
+
+
+  document.getElementById(
+    "editDate"
+  ).value =
+    data.Date || "";
+
+
+  document.getElementById(
+    "editTime"
+  ).value =
+    data.Time || "";
+
+
+  document.getElementById(
+    "editMax"
+  ).value =
+    data.Maxplayers || "";
+
+
+  document.getElementById(
+    "editFee"
+  ).value =
+    data.entryfee || 0;
+
+
+  document.getElementById(
+    "editRoom"
+  ).value =
+    data.Roomid || "";
+
+
+  document.getElementById(
+    "editStatus"
+  ).value =
+    data.Status || "Open";
+
+
+  document.getElementById(
+    "editDescription"
+  ).value =
+    data.Discription || "";
+
+
+  document.getElementById(
+    "editBox"
+  ).classList.remove(
+    "hidden"
+  );
+
+
+  document.getElementById(
+    "editBox"
+  ).scrollIntoView({
+    behavior:"smooth"
+  });
+
+}
+
+
+/* SAVE EDIT */
 
 document
-.getElementById("refreshBtn")
-.addEventListener("click", loadTournaments);
+.getElementById("saveEditBtn")
+.addEventListener(
+  "click",
+  async function(){
 
-</script>
+    if(!editingTournamentId){
 
-</body>
-</html>
+      return;
+
+    }
+
+
+    const name =
+      document.getElementById("editName")
+      .value.trim();
+
+    const game =
+      document.getElementById("editGame")
+      .value.trim();
+
+    const mode =
+      document.getElementById("editMode")
+      .value;
+
+    const date =
+      document.getElementById("editDate")
+      .value;
+
+    const time =
+      document.getElementById("editTime")
+      .value;
+
+    const maxplayers =
+      Number(
+        document.getElementById("editMax")
+        .value
+      );
+
+    const entryfee =
+      Number(
+        document.getElementById("editFee")
+        .value
+      );
+
+    const roomid =
+      document.getElementById("editRoom")
+      .value.trim();
+
+    const status =
+      document.getElementById("editStatus")
+      .value;
+
+    const description =
+      document.getElementById("editDescription")
+      .value.trim();
+
+
+    if(
+      !name ||
+      !date ||
+      !time ||
+      !maxplayers
+    ){
+
+      alert(
+        "Please fill required fields."
+      );
+
+      return;
+
+    }
+
+
+    try{
+
+      const tournamentRef =
+        doc(
+          db,
+          "Tournaments",
+          editingTournamentId
+        );
+
+
+      await updateDoc(
+        tournamentRef,
+        {
+
+          Name:name,
+          Game:game,
+          Mode:mode,
+          Date:date,
+          Time:time,
+          Maxplayers:maxplayers,
+          entryfee:entryfee,
+          Roomid:roomid,
+          Status:status,
+          Discription:description
+
+        }
+      );
+
+
+      alert(
+        "Tournament updated successfully!"
+      );
+
+
+      editingTournamentId =
+        null;
+
+
+      document.getElementById(
+        "editBox"
+      ).classList.add(
+        "hidden"
+      );
+
+
+      await loadTournaments();
+
+    }
+
+    catch(error){
+
+      console.error(error);
+
+      alert(
+        "Failed to update tournament: " +
+        err
