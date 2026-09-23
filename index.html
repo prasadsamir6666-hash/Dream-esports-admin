@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Dream eSports Admin</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #080808;
+      color: white;
+    }
+
+    /* LOGIN */
+
+    #loginScreen {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      background:
+        radial-gradient(circle at top, #252525 0%, #080808 45%);
+    }
+
+    .login-box {
+      width: 100%;
+      max-width: 400px;
+      padding: 35px 25px;
+      background: #111;
+      border: 1px solid #292929;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.6);
+      text-align: center;
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 18px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #ffb300, #ff6f00);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      font-weight: bold;
+      color: #111;
+    }
+
+    .login-box h1 {
+      font-size: 26px;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      color: #999;
+      font-size: 14px;
+      margin-bottom: 28px;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 14px;
+      border-radius: 12px;
+      border: 1px solid #333;
+      background: #191919;
+      color: white;
+      outline: none;
+      font-size: 15px;
+    }
+
+    input:focus {
+      border-color: #ff9800;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #ffb300, #ff6f00);
+      color: #111;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:active {
+      transform: scale(.98);
+    }
+
+    #message {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #ff7777;
+    }
+
+    /* ADMIN */
+
+    #adminScreen {
+      display: none;
+      min-height: 100vh;
+    }
+
+    .topbar {
+      height: 70px;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #111;
+      border-bottom: 1px solid #292929;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .brand {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .brand span {
+      color: #ff9800;
+    }
+
+    .logout {
+      width: auto;
+      padding: 10px 16px;
+      background: #222;
+      color: white;
+      border: 1px solid #444;
+      font-size: 13px;
+    }
+
+    .container {
+      padding: 25px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .welcome {
+      margin-bottom: 25px;
+    }
+
+    .welcome h2 {
+      font-size: 25px;
+      margin-bottom: 7px;
+    }
+
+    .welcome p {
+      color: #999;
+      font-size: 14px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+    }
+
+    .card {
+      padding: 22px;
+      background: #111;
+      border: 1px solid #292929;
+      border-radius: 16px;
+    }
+
+    .card-title {
+      color: #999;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    .card-number {
+      font-size: 30px;
+      font-weight: bold;
+      color: #ff9800;
+    }
+
+    .section {
+      margin-top: 30px;
+      padding: 22px;
+      background: #111;
+      border: 1px solid #292929;
+      border-radius: 16px;
+    }
+
+    .section h3 {
+      margin-bottom: 10px;
+    }
+
+    .section p {
+      color: #999;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- LOGIN SCREEN -->
+
+  <div id="loginScreen">
+
+    <div class="login-box">
+
+      <div class="logo">DE</div>
+
+      <h1>Dream eSports</h1>
+
+      <div class="subtitle">
+        Admin Control Panel
+      </div>
+
+      <input
+        type="email"
+        id="email"
+        placeholder="Admin Email"
+      >
+
+      <input
+        type="password"
+        id="password"
+        placeholder="Password"
+      >
+
+      <button onclick="loginAdmin()">
+        LOGIN TO ADMIN
+      </button>
+
+      <div id="message"></div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ADMIN DASHBOARD -->
+
+  <div id="adminScreen">
+
+    <div class="topbar">
+
+      <div class="brand">
+        Dream <span>eSports</span> Admin
+      </div>
+
+      <button class="logout" onclick="logoutAdmin()">
+        Logout
+      </button>
+
+    </div>
+
+
+    <div class="container">
+
+      <div class="welcome">
+
+        <h2>Admin Dashboard</h2>
+
+        <p id="adminEmail">
+          Admin
+        </p>
+
+      </div>
+
+
+      <div class="cards">
+
+        <div class="card">
+          <div class="card-title">
+            TOURNAMENTS
+          </div>
+
+          <div class="card-number">
+            —
+          </div>
+        </div>
+
+
+        <div class="card">
+          <div class="card-title">
+            PLAYERS
+          </div>
+
+          <div class="card-number">
+            —
+          </div>
+        </div>
+
+
+        <div class="card">
+          <div class="card-title">
+            ACTIVE
+          </div>
+
+          <div class="card-number">
+            —
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="section">
+
+        <h3>Admin Control</h3>
+
+        <p>
+          Tournament management, player management and other
+          administration features will be added here.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- FIREBASE -->
+
+  <script type="module">
+
+    import {
+      initializeApp
+    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+    import {
+      getAuth,
+      onAuthStateChanged,
+      signInWithEmailAndPassword,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+
+    const firebaseConfig = {
+
+      apiKey: "AIzaSyAeZnZ4tNZ7qYc0jfRdBq4J_Eahop37Qn4",
+
+      authDomain: "dream-esports-51780.firebaseapp.com",
+
+      projectId: "dream-esports-51780",
+
+      storageBucket: "dream-esports-51780.firebasestorage.app",
+
+      messagingSenderId: "959473187247",
+
+      appId: "1:959473187247:web:ba4a80a6da5b52d5fcd75a",
+
+      measurementId: "G-DP6X3STGN0"
+
+    };
+
+
+    const app = initializeApp(firebaseConfig);
+
+    const auth = getAuth(app);
+
+
+    /* LOGIN */
+
+    window.loginAdmin = async function() {
+
+      const email =
+        document.getElementById("email").value.trim();
+
+      const password =
+        document.getElementById("password").value;
+
+
+      const message =
+        document.getElementById("message");
+
+
+      if (!email || !password) {
+
+        message.innerText =
+          "Please enter email and password.";
+
+        return;
+
+      }
+
+
+      message.innerText = "Logging in...";
+
+
+      try {
+
+        await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+        message.innerText = "";
+
+      } catch (error) {
+
+        console.error(error);
+
+        message.innerText =
+          "Login failed: " + error.message;
+
+      }
+
+    };
+
+
+    /* AUTH STATE */
+
+    onAuthStateChanged(auth, (user) => {
+
+      if (user) {
+
+        document.getElementById("loginScreen")
+          .style.display = "none";
+
+        document.getElementById("adminScreen")
+          .style.display = "block";
+
+        document.getElementById("adminEmail")
+          .innerText = user.email;
+
+      } else {
+
+        document.getElementById("loginScreen")
+          .style.display = "flex";
+
+        document.getElementById("adminScreen")
+          .style.display = "none";
+
+      }
+
+    });
+
+
+    /* LOGOUT */
+
+    window.logoutAdmin = async function() {
+
+      await signOut(auth);
+
+    };
+
+  </script>
+
+</body>
+  </html>
